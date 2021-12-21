@@ -69,9 +69,13 @@ public class controlador {
                 if (personajes[n_al1].getVida()>0){
                     imprimir.luchasContra(seleccionado);
                     p1.luchaCPU(personajes[n_al1],seleccionado);
+                    imprimir.muestraLuchadores(personajes);
+                    System.out.println("-----------------------------------------------");
+                    System.out.println(seleccionado);
+                    System.out.println("-----------------------------------------------");
                 }
 
-                seleccionado.restaurarVidMana();
+                p1.restaurarVidMana(seleccionado);
 
                 if (seleccionado.getVida()<=0){
                     imprimir.selecMuerto();
@@ -88,10 +92,6 @@ public class controlador {
                 terminado=true;
                 imprimir.ganador(seleccionado);
             }
-            imprimir.muestraLuchadores(personajes);
-            System.out.println("-----------------------------------------------");
-            System.out.println(seleccionado);
-            System.out.println("-----------------------------------------------");
         }
     }
 }

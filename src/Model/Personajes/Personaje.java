@@ -98,11 +98,17 @@ public class Personaje {
     }
 
     public Habilidad utilizaHabilidad (int selec, int mana){
-        for (int i = 0; i < habilidades.length; i++) {
-            if (selec==i && mana>=habilidades[i].getManacost()){
-                return habilidades[selec];
+        boolean hab=false;
+        do {
+            for (int i = 0; i < habilidades.length; i++) {
+                if (selec==i && mana>=habilidades[i].getManacost()){
+                    hab=true;
+                    return habilidades[selec];
+                }
             }
-        }
+            System.out.println("Escoge bien la habilidad");
+        }while(!hab);
+
         return null;
     }
 
@@ -142,12 +148,5 @@ public class Personaje {
             this.resmag=20;
             this.ataque=95;
         }
-    }
-
-    public void restaurarVidMana(){
-        double a = Math.random() * 101;
-        int resta= (int) a;
-        this.vida+=resta;
-        this.mana+=resta;
     }
 }

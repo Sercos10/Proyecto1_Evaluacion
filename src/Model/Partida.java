@@ -32,54 +32,69 @@ public class Partida {
 
     public void lucha(Personaje p1, Personaje p2) {
         int dano_realizado = -1;
+        boolean realizado=false;
         if (p2.getVida() >= 0) {
-            if (p1.getClass() == Luchador.class || p1.getClass() == Tirador.class) {
-                imprimir.atacar();
-                int n = pedir.leeEntero("Introduce el numero del ataque que quieres realizar");
-                if (n == 1) {
-                    dano_realizado = p1.getAtaque() - p2.getArmadura();
-                    if (dano_realizado > 0) {
-                        p2.setVida(p2.getVida() - dano_realizado);
-                        imprimir.realizado(dano_realizado,p2);
-                    }
-                } else if (n == 2) {
-                    Habilidad habilidad;
-                    p1.muestraHabilidades();
-                    n = pedir.leeEntero("Introduce el numero de la habilidad que quieres realizar");
-                    habilidad = p1.utilizaHabilidad(n - 1, p1.getMana());
-                    p1.sumarStats(habilidad);
-                    dano_realizado = p1.getAtaque() - p2.getArmadura();
-                    if (dano_realizado > 0) {
-                        p2.setVida(p2.getVida() - dano_realizado);
-                        imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
-                        p1.resetStats(p1);
-                    }
-                }
+            do {
+                if (p1.getClass() == Luchador.class || p1.getClass() == Tirador.class) {
+                    imprimir.atacar();
+                    int n = pedir.escogeAtaque("Introduce el numero del ataque que quieres realizar");
+                    if (n == 1) {
+                        realizado=true;
+                        dano_realizado = p1.getAtaque() - p2.getArmadura();
+                        if (dano_realizado > 0) {
+                            p2.setVida(p2.getVida() - dano_realizado);
+                            imprimir.realizado(dano_realizado,p2);
+                        }
+                    } else if (n == 2) {
+                        realizado=true;
+                        Habilidad habilidad;
+                        p1.muestraHabilidades();
+                            n = pedir.escogeHabilidad("Introduce el numero de la habilidad que quieres realizar");
+                            habilidad = p1.utilizaHabilidad(n - 1, p1.getMana());
+                            p1.sumarStats(habilidad);
+                            dano_realizado = p1.getAtaque() - p2.getArmadura();
+                            if (dano_realizado > 0) {
+                                p2.setVida(p2.getVida() - dano_realizado);
+                                imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
+                                p1.resetStats(p1);
+                            }
 
 
-            } else if (p1.getClass() == Mago.class) {
-                imprimir.atacar();
-                int n = pedir.leeEntero("Introduce el numero del ataque que quieres realizar");
-                if (n == 1) {
-                    dano_realizado = p1.getPoderhab() - p2.getResmag();
-                    if (dano_realizado > 0) {
-                        p2.setVida(p2.getVida() - dano_realizado);
-                        imprimir.realizado(dano_realizado,p2);
+                    }else{
+                        System.out.println("Has introducido una opción no valida, escoge una opcion correcta");
+                        realizado=false;
                     }
-                } else if (n == 2) {
-                    Habilidad habilidad;
-                    p1.muestraHabilidades();
-                    n = pedir.leeEntero("Introduce el numero de la habilidad que quieres realizar");
-                    habilidad = p1.utilizaHabilidad(n - 1, p1.getMana());
-                    p1.sumarStats(habilidad);
-                    dano_realizado = p1.getPoderhab() - (p2.getResmag() + 10);//pongo el +10 de resistencia magica cuando ataca el mago porque como el mago tiene mucho mana y tiene ventaja, entonces voy a sumar siempre 10 puntos de resmag
-                    if (dano_realizado > 0) {
-                        p2.setVida(p2.getVida() - dano_realizado);
-                        imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
-                        p1.resetStats(p1);
+
+
+                } else if (p1.getClass() == Mago.class) {
+                    imprimir.atacar();
+                    int n = pedir.escogeAtaque("Introduce el numero del ataque que quieres realizar");
+                    if (n == 1) {
+                        realizado=true;
+                        dano_realizado = p1.getPoderhab() - p2.getResmag();
+                        if (dano_realizado > 0) {
+                            p2.setVida(p2.getVida() - dano_realizado);
+                            imprimir.realizado(dano_realizado,p2);
+                        }
+                    } else if (n == 2) {
+                        realizado=true;
+                        Habilidad habilidad;
+                        p1.muestraHabilidades();
+                            n = pedir.escogeHabilidad("Introduce el numero de la habilidad que quieres realizar");
+                            habilidad = p1.utilizaHabilidad(n - 1, p1.getMana());
+                            p1.sumarStats(habilidad);
+                            dano_realizado = p1.getPoderhab() - (p2.getResmag() + 10);//pongo el +10 de resistencia magica cuando ataca el mago porque como el mago tiene mucho mana y tiene ventaja, entonces voy a sumar siempre 10 puntos de resmag
+                            if (dano_realizado > 0) {
+                                p2.setVida(p2.getVida() - dano_realizado);
+                                imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
+                                p1.resetStats(p1);
+                            }
+                    }else{
+                        System.out.println("Has introducido una opción no valida, escoge una opcion correcta");
+                        realizado=false;
                     }
                 }
-            }
+            }while(!realizado);
         }
     }
 
@@ -93,7 +108,7 @@ public class Partida {
                     dano_realizado = p1.getAtaque() - p2.getArmadura();
                     if (dano_realizado > 0) {
                         p2.setVida(p2.getVida() - dano_realizado);
-                        imprimir.realizado(dano_realizado,p2);
+                        imprimir.realizadoCPU(dano_realizado,p2);
                     }
                 } else if (n_al1 == 2) {
                     Habilidad habilidad;
@@ -104,7 +119,8 @@ public class Partida {
                     dano_realizado = p1.getAtaque() - p2.getArmadura();
                     if (dano_realizado > 0) {
                         p2.setVida(p2.getVida() - dano_realizado);
-                        imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
+                        imprimir.habilidadCPU(habilidad,p1);
+                        imprimir.realizado_manaCPU(dano_realizado,p1,p1.getMana());
                         p1.resetStats(p1);
                     }
                 }
@@ -117,7 +133,7 @@ public class Partida {
                     dano_realizado = p1.getPoderhab() - p2.getResmag();
                     if (dano_realizado > 0) {
                         p2.setVida(p2.getVida() - dano_realizado);
-                        imprimir.realizado(dano_realizado,p2);
+                        imprimir.realizadoCPU(dano_realizado,p2);
                     }
                 } else if (n_al1 == 2) {
                     Habilidad habilidad;
@@ -128,7 +144,8 @@ public class Partida {
                     dano_realizado = p1.getPoderhab() - (p2.getResmag() + 10);//pongo el +10 de resistencia magica cuando ataca el mago porque como el mago tiene mucho mana y tiene ventaja, entonces voy a sumar siempre 10 puntos de resmag
                     if (dano_realizado > 0) {
                         p2.setVida(p2.getVida() - dano_realizado);
-                        imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
+                        imprimir.habilidadCPU(habilidad,p1);
+                        imprimir.realizado_manaCPU(dano_realizado,p1,p1.getMana());
                         p1.resetStats(p1);
                     }
                 }
@@ -137,11 +154,20 @@ public class Partida {
     }
 
     public Personaje escogePersonaje(Personaje[] personajes, String nombre){
-        for (int i = 0; i < personajes.length; i++) {
-            if (personajes[i].getNombre().equals(nombre)){
-                return personajes[i];
+        boolean escogido=false;
+        do {
+
+            for (int i = 0; i < personajes.length; i++) {
+                if (personajes[i].getNombre().equals(nombre)){
+                    escogido=true;
+                    return personajes[i];
+                }
             }
-        }
+            if (escogido==false){
+                nombre=pedir.leeRespuesta("Introduce bien el nombre del personaje");
+            }
+        }while(!escogido);
+
         return null;
     }
 
@@ -150,6 +176,16 @@ public class Partida {
             if (seleccionado==personajes[i])
                 personajes[i]=null;
         }
+    }
+
+    public void restaurarVidMana(Personaje p1){
+        double a = Math.random() * 101;
+        double b = Math.random() * 101;
+        int resvida= (int) a;
+        int resmana=(int) b;
+        p1.setVida(p1.getVida()+resvida);
+        p1.setMana(p1.getMana()+resmana);
+        imprimir.restaurar(p1,resmana,resvida);
     }
 
     @Override

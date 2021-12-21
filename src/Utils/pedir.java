@@ -12,10 +12,10 @@ public class pedir {
         do {
             try {
                 System.out.println(frase);
-                n = t.next();
+                n = t.nextLine();
                 valid = true;
             } catch (InputMismatchException ex) {
-                t.next();
+                t.nextLine();
                 System.out.println("Error");
                 valid = false;
             } catch (Exception e) {
@@ -26,7 +26,7 @@ public class pedir {
         return n;
     }
 
-    public static int leeEntero(String frase) {
+    public static int escogeAtaque(String frase) {
         int n = 0;
         boolean valid = false;
         Scanner t = new Scanner(System.in);
@@ -38,29 +38,27 @@ public class pedir {
                 valid = true;
             } catch (InputMismatchException ex) {
                 valid = false;
-                t.next();
+                t.nextLine();
             }
-        } while (!valid || n < 0);
-
+        } while (!valid || n < 0 || n>2);
         return n;
     }
 
-    public static double leeDouble(String frase) {
-        double n = 0;
+    public static int escogeHabilidad(String frase) {
+        int n = 0;
         boolean valid = false;
         Scanner t = new Scanner(System.in);
 
         do {
             try {
                 System.out.println(frase);
-                n = t.nextDouble();
+                n = t.nextInt();
                 valid = true;
             } catch (InputMismatchException ex) {
                 valid = false;
-                t.next();
+                t.nextLine();
             }
-        } while (!valid || n < 0);
-
+        } while (!valid || n < 0 || n>3);
         return n;
     }
 }
