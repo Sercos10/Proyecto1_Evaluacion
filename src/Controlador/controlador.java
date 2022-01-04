@@ -9,7 +9,7 @@ import Utils.pedir;
 import Vista.imprimir;
 
 public class controlador {
-    public void iniciarPartida(){
+    public static void iniciarPartida(){
         boolean terminado=false;
         int contador=0;
         String escoger="";
