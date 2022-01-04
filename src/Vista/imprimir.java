@@ -57,7 +57,7 @@ public class imprimir {
 
     public static void ganador(Personaje p1){
         System.out.println("-----------------------------------------------------------");
-        System.out.println(p1.getNombre()+" ha ganado la batalla a muerte, Felicidades-");
+        System.out.println("---"+p1.getNombre()+" ha ganado la batalla a muerte, Felicidades :)----");
         System.out.println("-----------------------------------------------------------");
     }
 

@@ -47,6 +47,7 @@ public class controlador {
         Mago m1= new Mago("Xerath",320,20, 20,0,55,750,mago,100,5, 5,20);
         Tirador t1= new Tirador("Jinx",320,20,20,60,0,650,tirador,80,0,0,35);
         l1.sumarStats();
+        l2.sumarStats();
         m1.sumarStats();
         t1.sumarStats();
         p1.addPersonaje(l1);

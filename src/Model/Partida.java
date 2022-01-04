@@ -31,8 +31,12 @@ public class Partida {
     }
 
     public void lucha(Personaje p1, Personaje p2) {
+
         int dano_realizado = -1;
+        double random =10+ Math.random() * p1.getAtaque();
+        int dano= (int) random;
         boolean realizado=false;
+
         if (p2.getVida() >= 0) {
             do {
                 if (p1.getClass() == Luchador.class || p1.getClass() == Tirador.class) {
@@ -40,7 +44,7 @@ public class Partida {
                     int n = pedir.escogeAtaque("Introduce el numero del ataque que quieres realizar");
                     if (n == 1) {
                         realizado=true;
-                        dano_realizado = p1.getAtaque() - p2.getArmadura();
+                        dano_realizado = dano - p2.getArmadura();
                         if (dano_realizado > 0) {
                             p2.setVida(p2.getVida() - dano_realizado);
                             imprimir.realizado(dano_realizado,p2);
@@ -51,8 +55,9 @@ public class Partida {
                         p1.muestraHabilidades();
                             n = pedir.escogeHabilidad("Introduce el numero de la habilidad que quieres realizar");
                             habilidad = p1.utilizaHabilidad(n - 1, p1.getMana());
-                            p1.sumarStats(habilidad);
-                            dano_realizado = p1.getAtaque() - p2.getArmadura();
+                            double a = 10+ Math.random() * habilidad.getAtaqueExt();
+                            int hab= (int) a;
+                            dano_realizado = (dano+hab) - p2.getArmadura();
                             if (dano_realizado > 0) {
                                 p2.setVida(p2.getVida() - dano_realizado);
                                 imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
@@ -70,8 +75,10 @@ public class Partida {
                     imprimir.atacar();
                     int n = pedir.escogeAtaque("Introduce el numero del ataque que quieres realizar");
                     if (n == 1) {
+                        double a =10+ Math.random() * p1.getPoderhab();
+                        int dano2= (int) a;
                         realizado=true;
-                        dano_realizado = p1.getPoderhab() - p2.getResmag();
+                        dano_realizado = dano2 - p2.getResmag();
                         if (dano_realizado > 0) {
                             p2.setVida(p2.getVida() - dano_realizado);
                             imprimir.realizado(dano_realizado,p2);
@@ -82,8 +89,11 @@ public class Partida {
                         p1.muestraHabilidades();
                             n = pedir.escogeHabilidad("Introduce el numero de la habilidad que quieres realizar");
                             habilidad = p1.utilizaHabilidad(n - 1, p1.getMana());
-                            p1.sumarStats(habilidad);
-                            dano_realizado = p1.getPoderhab() - (p2.getResmag() + 10);//pongo el +10 de resistencia magica cuando ataca el mago porque como el mago tiene mucho mana y tiene ventaja, entonces voy a sumar siempre 10 puntos de resmag
+                        double a =10+ Math.random() * p1.getPoderhab();
+                        int dano2= (int) a;
+                        double b = 10+ Math.random() * habilidad.getPoderhabExt();
+                        int hab= (int) b;
+                        dano_realizado = (dano2+hab) - p2.getResmag();//pongo el +10 de resistencia magica cuando ataca el mago porque como el mago tiene mucho mana y tiene ventaja, entonces voy a sumar siempre 10 puntos de resmag
                             if (dano_realizado > 0) {
                                 p2.setVida(p2.getVida() - dano_realizado);
                                 imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
