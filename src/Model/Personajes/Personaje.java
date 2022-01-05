@@ -115,15 +115,15 @@ public class Personaje {
     public void muestraHabilidades(){
         int n=1;
         for (int i = 0; i < habilidades.length ; i++) {
-            System.out.println("---------------------------------------");
+            System.out.println("");
             System.out.print(n++);
             System.out.print(habilidades[i]);
-            System.out.println("---------------------------------------");
+            System.out.println("");
         }
     }
 
     public void sumarStats(Habilidad habilidad){
-        this.mana-=habilidad.getManacost();
+        this.mana=habilidad.getManacost();
         this.armadura+=habilidad.getArmaduraExt();
         this.resmag+=habilidad.getResmagExt();
         this.ataque+=habilidad.getAtaqueExt();

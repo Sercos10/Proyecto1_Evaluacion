@@ -59,6 +59,6 @@ public class Tirador extends Personaje{
 
     @Override
     public String toString() {
-        return  nombre + " es Tirador,"+" tiene " + vida + " de vida, "+ armadura + " de armadura y "+ resmag+ " de resistencia magica, " +  ataque + " de ataque y " + poderhab + " de poder de habilidad, además de " + mana + " de mana, "+" sus habilidades son: " + Arrays.toString(habilidades);
+        return  nombre + " es Tirador,"+" tiene " + vida + " de vida, "+ armadura + " de armadura y "+ resmag+ " de resistencia magica, " +  ataque + " de ataque y " + poderhab + " de poder de habilidad, además de " + mana + " de mana.";
     }
 }

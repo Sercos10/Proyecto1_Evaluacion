@@ -55,6 +55,9 @@ public class controlador {
         p1.addPersonaje(t1);
         p1.addPersonaje(l2);
         Personaje[] personajes=p1.getPersonajes();
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("                                                PERSONAJES                                                              ");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
         imprimir.muestraLuchadores(personajes);
         escoger=pedir.leeRespuesta("Introduce el nombre del personaje que quieras escoger (Es sensible a mayusculas)");
         Personaje seleccionado= new Personaje();
@@ -65,18 +68,23 @@ public class controlador {
             int n_al1= (int) a;
 
             if (seleccionado!=null&&personajes[n_al1]!=null){
-                imprimir.luchasContra(personajes[n_al1]);
+
                 p1.lucha(seleccionado,personajes[n_al1]);
                 if (personajes[n_al1].getVida()>0){
                     imprimir.luchasContra(seleccionado);
                     p1.luchaCPU(personajes[n_al1],seleccionado);
                     imprimir.muestraLuchadores(personajes);
-                    System.out.println("-----------------------------------------------");
+                    System.out.println("");
                     System.out.println(seleccionado);
-                    System.out.println("-----------------------------------------------");
+                    System.out.println("");
                 }
 
                 p1.restaurarVidMana(seleccionado);
+                System.out.println();
+                imprimir.muestraPersonaje(seleccionado);
+                System.out.println();
+                imprimir.muestraPersonaje(personajes[n_al1]);
+                System.out.println();
 
                 if (seleccionado.getVida()<=0){
                     imprimir.selecMuerto();
