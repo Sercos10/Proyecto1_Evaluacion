@@ -43,7 +43,7 @@ public class imprimir {
     public static void realizadoCPU(int dano, Personaje p1){
         System.out.println("");
         System.out.println("Te han realizado: "+dano+" daño");
-        System.out.println("Ha te queda: "+p1.getVida()+" de vida");
+        System.out.println("Ha "+p1.getNombre()+" le queda: "+p1.getVida()+" de vida");
         System.out.println("");
     }
 

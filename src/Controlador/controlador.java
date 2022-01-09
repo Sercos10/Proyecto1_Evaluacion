@@ -68,15 +68,11 @@ public class controlador {
             int n_al1= (int) a;
 
             if (seleccionado!=null&&personajes[n_al1]!=null){
-
+                imprimir.luchasContra(personajes[n_al1]);
                 p1.lucha(seleccionado,personajes[n_al1]);
                 if (personajes[n_al1].getVida()>0){
                     imprimir.luchasContra(seleccionado);
                     p1.luchaCPU(personajes[n_al1],seleccionado);
-                    imprimir.muestraLuchadores(personajes);
-                    System.out.println("");
-                    System.out.println(seleccionado);
-                    System.out.println("");
                 }
 
                 p1.restaurarVidMana(seleccionado);
@@ -92,7 +88,8 @@ public class controlador {
                     seleccionado=p1.escogePersonaje(personajes,escoger=pedir.leeRespuesta("Introduce el nombre del persona que quieras escoger (Es sensible a mayusculas)"));
                     p1.eliminaSeleccionado(personajes,seleccionado);
                     contador++;
-                }else if (personajes[n_al1].getVida()<=0){
+                }
+                if (personajes[n_al1].getVida()<=0){
                     personajes[n_al1]=null;
                     contador++;
                 }
