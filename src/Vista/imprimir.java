@@ -28,7 +28,11 @@ public class imprimir {
     public static void realizado(int dano, Personaje p1){
         System.out.println("--------------------------------------------------------");
         System.out.println("Has realizado: "+dano+" daño");
-        System.out.println("Ha "+p1.getNombre()+" le queda: "+p1.getVida()+" de vida");
+        if (p1.getVida() < 0) {
+            System.out.println(p1.getNombre()+" ha muerto");
+        }else{
+            System.out.println("Ha "+p1.getNombre()+" le queda: "+p1.getVida()+" de vida");
+        }
         System.out.println("--------------------------------------------------------");
     }
 

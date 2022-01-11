@@ -70,10 +70,6 @@ public class controlador {
                 if (personajes[n_al1].getVida()>0){
                     imprimir.luchasContra(seleccionado);
                     p1.luchaCPU(personajes[n_al1],seleccionado);
-                    imprimir.muestraLuchadores(personajes);
-                    System.out.println("-----------------------------------------------");
-                    System.out.println(seleccionado);
-                    System.out.println("-----------------------------------------------");
                 }
 
                 p1.restaurarVidMana(seleccionado);
