@@ -37,7 +37,7 @@ public class Partida {
         int dano= (int) random;
         boolean realizado=false;
 
-        if (p2.getVida() >= 0) {
+        if (p2.getVida() > 0) {
             do {
                 if (p1.getClass() == Luchador.class || p1.getClass() == Tirador.class) {
                     imprimir.atacar();
@@ -189,8 +189,8 @@ public class Partida {
     }
 
     public void restaurarVidMana(Personaje p1){
-        double a = Math.random() * 101;
-        double b = Math.random() * 101;
+        double a = Math.random() * 31;
+        double b = Math.random() * 31;
         int resvida= (int) a;
         int resmana=(int) b;
         p1.setVida(p1.getVida()+resvida);

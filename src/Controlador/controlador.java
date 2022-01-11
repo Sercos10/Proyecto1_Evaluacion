@@ -9,7 +9,7 @@ import Utils.pedir;
 import Vista.imprimir;
 
 public class controlador {
-    public void iniciarPartida(){
+    public static void iniciarPartida(){
         boolean terminado=false;
         int contador=0;
         String escoger="";
@@ -55,6 +55,9 @@ public class controlador {
         p1.addPersonaje(t1);
         p1.addPersonaje(l2);
         Personaje[] personajes=p1.getPersonajes();
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("                                                PERSONAJES                                                              ");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
         imprimir.muestraLuchadores(personajes);
         escoger=pedir.leeRespuesta("Introduce el nombre del personaje que quieras escoger (Es sensible a mayusculas)");
         Personaje seleccionado= new Personaje();
@@ -73,6 +76,11 @@ public class controlador {
                 }
 
                 p1.restaurarVidMana(seleccionado);
+                System.out.println();
+                imprimir.muestraPersonaje(seleccionado);
+                System.out.println();
+                imprimir.muestraPersonaje(personajes[n_al1]);
+                System.out.println();
 
                 if (seleccionado.getVida()<=0){
                     imprimir.selecMuerto();
@@ -80,7 +88,8 @@ public class controlador {
                     seleccionado=p1.escogePersonaje(personajes,escoger=pedir.leeRespuesta("Introduce el nombre del persona que quieras escoger (Es sensible a mayusculas)"));
                     p1.eliminaSeleccionado(personajes,seleccionado);
                     contador++;
-                }else if (personajes[n_al1].getVida()<=0){
+                }
+                if (personajes[n_al1].getVida()<=0){
                     personajes[n_al1]=null;
                     contador++;
                 }
