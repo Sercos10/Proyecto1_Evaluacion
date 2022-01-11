@@ -104,6 +104,10 @@ public class Personaje {
                 if (selec==i && mana>=habilidades[i].getManacost()){
                     hab=true;
                     return habilidades[selec];
+                }else if (selec==i && mana<habilidades[i].getManacost()){
+                    System.out.println("No tienes maná para realizar la habilidad");
+                    hab=true;
+                    return null;
                 }
             }
             System.out.println("Escoge bien la habilidad");
@@ -115,10 +119,9 @@ public class Personaje {
     public void muestraHabilidades(){
         int n=1;
         for (int i = 0; i < habilidades.length ; i++) {
-            System.out.println("");
             System.out.print(n++);
-            System.out.print(habilidades[i]);
-            System.out.println("");
+            System.out.println(habilidades[i]);
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------");
         }
     }
 

@@ -7,10 +7,16 @@ public class imprimir {
 
     public static void muestraLuchadores(Personaje[] personajes) {
         for (int i = 0; i < personajes.length; i++) {
-            System.out.println("----------------------------------------------------------------------------------------");
+            System.out.println("-------------------------------------------------------------------------------------------------------------------------");
             System.out.println(personajes[i]);
-            System.out.println("----------------------------------------------------------------------------------------");
+            if (i==3){
+                System.out.println("-------------------------------------------------------------------------------------------------------------------------");
+            }
         }
+    }
+
+    public static void muestraPersonaje(Personaje p1){
+        System.out.println(p1);
     }
 
     public static void luchasContra(Personaje p){
@@ -36,21 +42,21 @@ public class imprimir {
         System.out.println("--------------------------------------------------------");
         System.out.println("Has realizado: "+dano+" daño");
         System.out.println("Ha "+p1.getNombre()+" le queda: "+p1.getVida()+" de vida");
-        System.out.println("Te queda: " + p1.getMana()+" de mana");
+        System.out.println("Te queda: " + mana+" de mana");
         System.out.println("--------------------------------------------------------");
     }
 
     public static void realizadoCPU(int dano, Personaje p1){
         System.out.println("--------------------------------------------------------");
         System.out.println("Te han realizado: "+dano+" daño");
-        System.out.println("Ha te queda: "+p1.getVida()+" de vida");
+        System.out.println("Ha "+p1.getNombre()+" le queda: "+p1.getVida()+" de vida");
         System.out.println("--------------------------------------------------------");
     }
 
-    public static void realizado_manaCPU(int dano, Personaje p1, int mana){
+    public static void realizado_manaCPU(int dano, Personaje p1, Personaje p2, int mana){
         System.out.println("--------------------------------------------------------");
         System.out.println("Te han realizado: "+dano+" daño");
-        System.out.println("Te queda: "+p1.getVida()+" de vida");
+        System.out.println("Te queda: "+p2.getVida()+" de vida");
         System.out.println("Ha "+p1.getNombre()+" le queda: "+ p1.getMana()+" de mana");
         System.out.println("--------------------------------------------------------");
     }
@@ -62,7 +68,7 @@ public class imprimir {
     }
 
     public static void restaurar(Personaje p1, int mana, int vida){
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("");
         System.out.println("Tu personaje: "+p1.getNombre()+ " ha recuperado "+vida+" puntos de vida y "+mana+" puntos de mana");
     }
 

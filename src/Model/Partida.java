@@ -55,14 +55,26 @@ public class Partida {
                         p1.muestraHabilidades();
                             n = pedir.escogeHabilidad("Introduce el numero de la habilidad que quieres realizar");
                             habilidad = p1.utilizaHabilidad(n - 1, p1.getMana());
-                            double a = 10+ Math.random() * habilidad.getAtaqueExt();
-                            int hab= (int) a;
-                            dano_realizado = (dano+hab) - p2.getArmadura();
-                            if (dano_realizado > 0) {
-                                p2.setVida(p2.getVida() - dano_realizado);
-                                imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
-                                p1.resetStats(p1);
+                            if (habilidad!=null){
+                                p1.setMana(p1.getMana()-habilidad.getManacost());
+                                double a = 10+ Math.random() * habilidad.getAtaqueExt();
+                                int hab= (int) a;
+                                dano_realizado = (dano+hab) - p2.getArmadura();
+                                if (dano_realizado > 0) {
+                                    p2.setVida(p2.getVida() - dano_realizado);
+                                    imprimir.realizado_mana(dano_realizado,p2,p1.getMana());
+                                    p1.resetStats(p1);
+                                }
+                            }else if(habilidad==null){
+                                System.out.println("Atacarás con un ataque basico ya que no tienes mana");
+                                realizado=true;
+                                dano_realizado = dano - p2.getArmadura();
+                                if (dano_realizado > 0) {
+                                    p2.setVida(p2.getVida() - dano_realizado);
+                                    imprimir.realizado(dano_realizado,p2);
+                                }
                             }
+
 
 
                     }else{
@@ -130,7 +142,7 @@ public class Partida {
                     if (dano_realizado > 0) {
                         p2.setVida(p2.getVida() - dano_realizado);
                         imprimir.habilidadCPU(habilidad,p1);
-                        imprimir.realizado_manaCPU(dano_realizado,p1,p1.getMana());
+                        imprimir.realizado_manaCPU(dano_realizado,p1,p2,p1.getMana());
                         p1.resetStats(p1);
                     }
                 }
@@ -155,7 +167,7 @@ public class Partida {
                     if (dano_realizado > 0) {
                         p2.setVida(p2.getVida() - dano_realizado);
                         imprimir.habilidadCPU(habilidad,p1);
-                        imprimir.realizado_manaCPU(dano_realizado,p1,p1.getMana());
+                        imprimir.realizado_manaCPU(dano_realizado,p1,p2,p1.getMana());
                         p1.resetStats(p1);
                     }
                 }
@@ -194,7 +206,7 @@ public class Partida {
         int resvida= (int) a;
         int resmana=(int) b;
         p1.setVida(p1.getVida()+resvida);
-        p1.setMana(p1.getMana()+resmana);
+        //p1.setMana(p1.getMana()+resmana);
         imprimir.restaurar(p1,resmana,resvida);
     }
 
