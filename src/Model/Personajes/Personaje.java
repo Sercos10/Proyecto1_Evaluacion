@@ -126,11 +126,14 @@ public class Personaje {
     }
 
     public void sumarStats(Habilidad habilidad){
-        this.mana=habilidad.getManacost();
-        this.armadura+=habilidad.getArmaduraExt();
-        this.resmag+=habilidad.getResmagExt();
-        this.ataque+=habilidad.getAtaqueExt();
-        this.poderhab+=habilidad.getPoderhabExt();
+        if (habilidad!=null){
+            this.mana=habilidad.getManacost();
+            this.armadura+=habilidad.getArmaduraExt();
+            this.resmag+=habilidad.getResmagExt();
+            this.ataque+=habilidad.getAtaqueExt();
+            this.poderhab+=habilidad.getPoderhabExt();
+        }
+
     }
 
     public void resetStats(Personaje p1){
