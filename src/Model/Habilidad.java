@@ -8,6 +8,15 @@ public class Habilidad {
     protected int armaduraExt;
     protected int resmagExt;
 
+    public Habilidad(){
+        this.nombre = "";
+        this.manacost = 0;
+        this.ataqueExt = 0;
+        this.poderhabExt = 0;
+        this.armaduraExt = 0;
+        this.resmagExt = 0;
+    }
+
     public Habilidad(String nombre, int manacost, int ataqueExt, int poderhabExt, int armaduraExt, int resmagExt) {
         this.nombre = nombre;
         this.manacost = manacost;

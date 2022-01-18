@@ -99,6 +99,7 @@ public class Personaje {
 
     public Habilidad utilizaHabilidad (int selec, int mana){
         boolean hab=false;
+        Habilidad habilidad= new Habilidad();
         do {
             for (int i = 0; i < habilidades.length; i++) {
                 if (selec==i && mana>=habilidades[i].getManacost()){
@@ -107,13 +108,13 @@ public class Personaje {
                 }else if (selec==i && mana<habilidades[i].getManacost()){
                     System.out.println("No tienes maná para realizar la habilidad");
                     hab=true;
-                    return null;
+                    return habilidad;
                 }
             }
             System.out.println("Escoge bien la habilidad");
         }while(!hab);
 
-        return null;
+        return habilidad;
     }
 
     public void muestraHabilidades(){
